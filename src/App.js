@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Navigate } from "react-router-dom"
+import Home from "./Routes/Home/Home";
+import Destination from './Routes/Destination/Destination.jsx'
+import Navigation from "./Routes/Navigation/Navigation";
+import Moon from "./Routes/Destination/Mars";
+import Crew from './Routes/Crew/Crew.jsx'
+import Titan from "./Routes/Destination/Titan";
+import Europe from "./Routes/Destination/Europe";
+import Mars from "./Routes/Destination/Earth";
+import Technology from './Routes/Technology/Technology.jsx'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <Routes>
+
+    <Route path="/" element={<Navigation />} >
+      <Route path='/' element={<Navigate to="/home" />} />
+      <Route path='/home' element={<Home />} />
+      <Route path='/destination' element={<Destination />} >
+        <Route path='/destination' element={<Navigate to="/destination/moon" />} />
+        <Route path="/destination/moon" element={<Moon />} />
+        <Route path="/destination/earth" element={<Mars />} />
+        <Route path="/destination/titan" element={<Titan />} />
+        <Route path="/destination/europe" element={<Europe />} />
+      </Route>
+      <Route path='/crew' element={<Crew />} />
+      <Route path='/technology' element={<Technology />} />
+    </Route>
+
+  </Routes>;
 }
 
 export default App;
